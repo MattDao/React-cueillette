@@ -1,0 +1,11 @@
+.Inscription {
+  width: 50%;
+  margin: 50px auto;
+  align-content: center;
+}
+.submit-btn {
+  padding: 5px 25px;
+  background-color: #32ce85;
+  border-radius: 7px;
+  border-color: white;
+}
