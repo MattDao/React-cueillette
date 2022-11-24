@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { useState } from "react";
-import { Plante } from "../../pages/Home";
+import { Plante } from "../pages/Home";
 
 interface filterSideBarProps {
   listElementPlant: Plante[];

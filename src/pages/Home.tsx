@@ -1,12 +1,9 @@
-// import { list_products } from "../data";
-import SideBar from "../components/SideBar/SideBar";
+import SideBar from "../components/SideBar";
 import { useEffect, useState } from "react";
-import Card from "../components/Card/Card";
+import Card from "../components/Card";
 import axios from "axios";
-import SearchBar from "../components/SearchBar/Searchbar";
+import SearchBar from "../components/Searchbar";
 import Avis from "../components/Avis";
-
-// import { list_products } from "../data";
 
 export interface Plante {
   toLowerCase(): string;
@@ -21,7 +18,7 @@ export interface Plante {
 
 let listePlantes: Plante[] = [];
 let checkedCateg: string[] = [];
-let searchPlants: string;
+let searchPlants: String;
 
 const Home = () => {
   const [listPlantDisplayed, setListPlantDisplayed] = useState<Plante[]>([
@@ -30,10 +27,15 @@ const Home = () => {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/plantes").then((res) => {
-      listePlantes = res.data.data;
-      setListPlantDisplayed([...listePlantes]);
-    });
+    const token = localStorage.getItem("token");
+    axios
+      .get("http://localhost:8080/api/plantes", {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        listePlantes = res.data.data;
+        setListPlantDisplayed([...listePlantes]);
+      });
   }, []);
 
   const handleCheckCategories = (mesCategoriesChecked: string[]) => {
@@ -71,7 +73,7 @@ const Home = () => {
           <div className="container-fluid custom-main ">
             <SearchBar onChangeSearch={handleSearch} />
             <Avis />
-            <div className="container-card">
+            <div className="container-card d-flex flex-wrap">
               <>
                 {listPlantDisplayed.map((plante, i) => (
                   <ul key={i}>

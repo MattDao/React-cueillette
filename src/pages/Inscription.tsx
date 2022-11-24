@@ -1,7 +1,7 @@
-
 import React, { FormEvent, useRef } from "react";
-import "./Inscription.css";
+
 import axios from "axios";
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 
 const Inscription = () => {
   const emailElement = useRef<HTMLInputElement>(null);
@@ -14,19 +14,20 @@ const Inscription = () => {
     console.log(emailElement.current?.value);
     console.log(passwordElement.current?.value);
     axios
-      .post("http://localhost:8080/api/users", {
+      .post("http://localhost:8080/api/users/signin", {
         email: emailElement.current?.value,
         password: passwordElement.current?.value,
       })
       .then((response) => {
         console.log("response", response.data);
+        // Navigate('/login')
       });
   };
 
   return (
-    <div className="Inscription">
-      <h1>Inscrivez vous</h1>
+    <div className="d-flex justify-content-center mt-5">
       <form className="formulaire" onSubmit={handleSubmitForm}>
+        <h1>Inscrivez vous</h1>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
@@ -53,39 +54,8 @@ const Inscription = () => {
             ref={passwordElement}
           />
         </div>
-        <input
-          type="submit"
-          value="Send"
-          className="submit-btn btn-success bt-prix"
-        />
+        <input type="submit" value="S'inscrire" className="btn btn-success" />
       </form>
-      {/* <form classNameName="formulaire" onSubmit={handleSubmitForm}>
-        <div classNameName="form-floating mb-3">
-          <input
-            type="email"
-            classNameName="form-control"
-            id="emailUser"
-            ref={emailElement}
-          />
-          <label htmlFor="email">Email</label>
-        </div>
-
-        <div classNameName="form-floating">
-          <input
-            type="password"
-            classNameName="form-control"
-            id="password"
-            ref={passwordElement}
-          />
-          <label htmlFor="password">Password</label>
-        </div>
-
-        <input
-          type="submit"
-          value="Send"
-          classNameName="submit-btn mt-5 btn btn-success ml-0!important"
-        />
-      </form> */}
     </div>
   );
 };

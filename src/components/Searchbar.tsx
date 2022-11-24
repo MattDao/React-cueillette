@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Plante } from "../../pages/Home";
-// import Card from "../card/Card";
+import { Plante } from "../pages/Home";
 
 interface searchBarProps {
   onChangeSearch: (value: string) => void;

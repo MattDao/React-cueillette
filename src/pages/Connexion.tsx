@@ -17,13 +17,20 @@ const Connexion = () => {
         password: passwordConnexionElement.current?.value,
       })
       .then((response) => {
-        console.log("response", response.data);
+        const token = response.data.token;
+        //set le token dans le localstorage
+        localStorage.setItem("token", token);
+        console.log("response", response.data.token);
       });
   };
   return (
-    <div className="Inscription">
-      <h1>Inscrivez vous</h1>
+    <div
+      className="d-flex justify-content-center mt-5
+"
+    >
       <form className="formulaire" onSubmit={handleLoginForm}>
+        <h1>Connexion Utilisateur</h1>
+
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
@@ -50,11 +57,7 @@ const Connexion = () => {
             ref={passwordConnexionElement}
           />
         </div>
-        <input
-          type="submit"
-          value="inscription"
-          className="submit-btn btn-success bt-prix"
-        />
+        <input type="submit" value="connexion" className="btn btn-success" />
       </form>
     </div>
   );

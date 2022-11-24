@@ -1,5 +1,5 @@
 import React from "react";
-import { Plante } from "../../pages/Home";
+import { Plante } from "../pages/Home";
 
 interface CardProps {
   photo: Plante;
@@ -28,7 +28,6 @@ const Card = ({ photo }: CardProps) => {
       </svg>
       <img
         src={`http://localhost:8080/assets/${photo.url_picture}`}
-        // {photo.url_picture}
         className="card-img-top"
         alt="plantes"
       />
@@ -59,7 +58,7 @@ const Card = ({ photo }: CardProps) => {
           <div className="space">
             💵 {photo.unitprice_ati}€{/* {photo.unitprice_ati} € */}
             <button type="button" className="btn btn-success">
-              Pour moi !
+              Acheter
             </button>
           </div>
         </div>
